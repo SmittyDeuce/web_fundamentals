@@ -21,22 +21,22 @@ import json
 # 1. Write a Python script to make a GET request to the Pokémon API (`https://pokeapi.co/api/v2/pokemon/pikachu`).
 
 # 2. Extract and print the name and abilities of the Pokémon.
-
-# response = requests.get("https://pokeapi.co/api/v2/pokemon/pikachu")
-
-# json_data =  response.text
-
-# pikachu_data = json.loads(json_data)
-
-
-# abilities= pikachu_data["abilities"]
-
-# print("Name:",pikachu_data["name"])
-
-# for ability in abilities:
-#     print(f"Ability: ",ability["ability"]["name"])
-
 # Expected Outcome: The script should output the name of the Pokémon (Pikachu) and a list of its abilities.
+
+response = requests.get("https://pokeapi.co/api/v2/pokemon/pikachu")
+
+json_data =  response.text
+
+pikachu_data = json.loads(json_data)
+
+
+abilities= pikachu_data["abilities"]
+
+print("Name:",pikachu_data["name"])
+
+for ability in abilities:
+    print(f"Ability: ",ability["ability"]["name"])
+
 
 
 
@@ -53,6 +53,13 @@ import json
 
 # def calculate_average_weight(pokemon_list):
 #     return #average weight
+
+# Expected Outcome: The script should display the names and abilities of the three chosen Pokémon and their average weight. The function should correctly calculate and return the average weight based on the data fetched from the API. 
+
+
+
+
+
 
 pokemon_names = ["pikachu", "bulbasaur", "charmander"]
 
@@ -78,7 +85,12 @@ def fetch_pokemon_data(pokemon_names):
     return pokemon_data_names, pokemon_data_abilities
 
 
-# print(fetch_pokemon_data(pokemon_names))
+print(fetch_pokemon_data(pokemon_names))
+
+
+
+
+
 
 
 def fetch_pokemon_weight(pokemon_names):
@@ -100,9 +112,8 @@ def fetch_pokemon_weight(pokemon_names):
     
     return avg_weight
 
-# print(fetch_pokemon_weight(pokemon_names))
+print(fetch_pokemon_weight(pokemon_names))
 
 
 
-# Expected Outcome: The script should display the names and abilities of the three chosen Pokémon and their average weight. The function should correctly calculate and return the average weight based on the data fetched from the API. 
 

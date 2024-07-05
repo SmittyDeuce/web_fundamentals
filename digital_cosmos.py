@@ -10,6 +10,10 @@ import json
 
 # Expected Outcome: A successfully created and activated virtual environment with the `requests` package installed.
 
+
+
+
+
 # Task 2: Fetch Data from a Space API Write a Python script that makes a GET request to a space API (e.g., [The Solar System OpenData](https://api.le-systeme-solaire.net/en/)) to fetch data about planets.
 
 # Parse the JSON response and extract information about each planet, such as its name, mass, and orbit period.
@@ -43,18 +47,7 @@ import json
 # Planet: Earth, Mass: 5.97237, Orbit Period: 365.256 days
 # Planet: Venus, Mass: 4.86747, Orbit Period: 224.701 days
 
-# def fetch_space_data():
-    
-#     url = "https://api.le-systeme-solaire.net/rest/bodies/"
-#     response = requests.get(url)
-#     json_data = response.text
-#     planet_data = json.loads(json_data)
 
-#     if "Earth" or "earth" in planet_data:
-#         print("ues")
-
-
-# fetch_space_data()
 def fetch_planet_data():
 
     url = "https://api.le-systeme-solaire.net/rest/bodies/"
@@ -89,3 +82,28 @@ fetch_planet_data()
 # name, mass = find_heaviest_planet(planets)
 # print(f"The heaviest planet is {name} with a mass of {mass} kg.")
 # Expected Outcome: A more structured and formatted output, along with an analysis result, such as identifying the heaviest planet in the solar system.
+
+
+
+def heaviest_planet():
+    counter = 0
+    url = "https://api.le-systeme-solaire.net/rest/bodies/"
+    response = requests.get(url)
+    json_data = response.text
+    planet_data = json.loads(json_data)
+
+    heaviest_planet_name = ""
+
+    for body in planet_data["bodies"]:
+        if body["isPlanet"] and body["mass"]:
+            name = body["englishName"]
+            mass = body["mass"]["massValue"]
+
+            if counter < mass:
+                counter = mass
+                heaviest_planet_name = name
+
+    if heaviest_planet_name:
+        print(f"The heaviest planet is {heaviest_planet_name} with a mass of {counter} kg")
+
+heaviest_planet()
